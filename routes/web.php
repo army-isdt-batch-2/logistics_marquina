@@ -2,17 +2,37 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/layout', [
+    App\Http\Controllers\LoginController::class,
+    'layout'
+]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    App\Http\Controllers\SupplierController::class,
+    'index'
+])->name('supplier');
+
+Route::get('/supplier/create', [
+    App\Http\Controllers\SupplierController::class,
+    'add'
+])->name('supplier.create');
+
+Route::post('/supplier/save', [
+    App\Http\Controllers\SupplierController::class,
+    'save'
+])->name('supplier.save');
+
+Route::get('/supplier/update/{id}', [
+    App\Http\Controllers\SupplierController::class,
+    'update'
+ ])->name('supplier.update');
+
+ Route::post('/supplier/update/{id}/save', [
+    App\Http\Controllers\SupplierController::class,
+    'update_save'
+ ])->name('supplier.update.save');
+
+ Route::get('/supplier.delete/{id}', [
+    App\Http\Controllers\SupplierController::class,
+    'delete'
+ ])->name('supplier.delete');
